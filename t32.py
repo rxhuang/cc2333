@@ -27,7 +27,7 @@ def main(event: func.EventGridEvent, context: func.Context):
 
     imageurl = ur + 'thumbnail-container/' + longname
     tags = cvClient.tag_image(imageurl)
-    
+
     tagarr = []
     for tag in tags.tags:
         tagarr.append(tag.name)
@@ -43,8 +43,8 @@ def main(event: func.EventGridEvent, context: func.Context):
     logging.info(data)
 
     searchClient = SearchClient(endpoint=cs_url,
-                        index_name='csindex',
-                        credential=AzureKeyCredential(cs_key))
+                                index_name='csindex',
+                                credential=AzureKeyCredential(cs_key))
 
     searchClient.upload_documents(documents=data)
 
